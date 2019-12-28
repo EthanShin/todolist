@@ -5,14 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.avoirom.todo.R
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ListFragment : Fragment() {
 
     companion object {
         fun newInstance() = ListFragment()
     }
+
+    val viewModel: MainViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
