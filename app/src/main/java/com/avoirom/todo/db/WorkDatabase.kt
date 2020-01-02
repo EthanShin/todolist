@@ -7,15 +7,15 @@ import androidx.room.RoomDatabase
 import com.avoirom.todo.model.Work
 
 @Database(entities = arrayOf(Work::class), version = 1, exportSchema = false)
-public abstract class WorkRoomDatabase : RoomDatabase() {
+public abstract class WorkDatabase : RoomDatabase() {
 
-    abstract fun workDao(): WorkDao
+    abstract fun getWorkDao(): WorkDao
 
     companion object {
         @Volatile
-        private var INSTANCE: WorkRoomDatabase? = null
+        private var INSTANCE: WorkDatabase? = null
 
-        fun getDatabase(context: Context): WorkRoomDatabase {
+        fun getDatabase(context: Context): WorkDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -23,7 +23,7 @@ public abstract class WorkRoomDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    WorkRoomDatabase::class.java,
+                    WorkDatabase::class.java,
                     "work_database"
                 ).build()
                 INSTANCE = instance
